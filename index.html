@@ -12,7 +12,7 @@
 		</style>
 		
 	</head >
-	<body onload = "B_init()">
+	<body onload = "B_init()" onkeydown="movePos()">
 		<div id="continer">
 			<table>
 				<thead id="head">
@@ -51,6 +51,25 @@
 				}
 				produceInit();
 			}
+			//键盘控制方向的函数
+			function movePos(){
+				switch(event.keyCode){
+					case 37:
+						Pos = "left";
+						break;
+					case 38:
+						Pos = "up";
+						break;
+					case 39:
+						Pos = "right";
+						break;
+					case 40:
+						Pos = "down";
+						break;
+					default:
+				}
+				process();
+			}
 			//获取鼠标滑过方向
 			document.onmousedown = function(){
 				var event_obj = event;
@@ -86,6 +105,9 @@
 //					alert(Pos);
 					flag = false;
 				}
+				process();
+			}
+			function process(){
 				//根据鼠标的移动方向来进行滑块的整体运动
 				switch(Pos){
 					case "right":
